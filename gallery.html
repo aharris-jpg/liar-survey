@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Poker Face Survey – Who Looks Like a Liar?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Action Network’s Poker Face Survey asked 3,019 U.S. adults which AI-generated faces look most like a stereotypical liar – and which look the most trustworthy." />
+
+  <style>
+    :root {
+      --page-bg-top: #e5f0ff;
+      --page-bg-bottom: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --accent-green: #00a65a;
+      --accent-blue: #2563eb;
+      --accent-red: #e11d48;
+      --border-subtle: #e5e7eb;
+      --radius-xl: 18px;
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.16);
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 16px 60px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: linear-gradient(
+        180deg,
+        var(--page-bg-top) 0%,
+        var(--page-bg-bottom) 40%,
+        var(--page-bg-bottom) 100%
+      );
+      color: var(--text-main);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .page-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 24px 20px 22px;
+    }
+
+    @media (min-width: 900px) {
+      body { padding: 48px 24px 70px; }
+      .page-card { padding: 26px 26px 24px; }
+    }
+
+    /* HERO */
+
+    .hero {
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: linear-gradient(135deg, #ffffff, #e5f0ff);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left,
+        rgba(37, 99, 235, 0.18),
+        transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: #111827;
+      color: #f9fafb;
+      margin-bottom: 8px;
+    }
+
+    .hero-tag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      margin: 0 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+    }
+
+    .hero-title-highlight {
+      background: linear-gradient(90deg, #111827, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .hero-underline {
+      height: 3px;
+      width: 220px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #e11d48, #f97316, #22c55e);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      background: rgba(37, 99, 235, 0.08);
+      border-radius: 999px;
+      padding: 4px 11px;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-blue);
+    }
+
+    /* SECTIONS / GRID */
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .section-kicker {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .section-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 2px 0 14px;
+      max-width: 640px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition:
+        transform 150ms ease-out,
+        box-shadow 150ms ease-out,
+        border-color 150ms ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.22);
+      border-color: rgba(0, 166, 90, 0.45);
+    }
+
+    .card-banner {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .banner-red {
+      background: linear-gradient(90deg, #f97373, #e11d48);
+    }
+
+    .banner-green {
+      background: linear-gradient(90deg, #22c55e, #15803d);
+    }
+
+    .banner-grey {
+      background: linear-gradient(90deg, #9ca3af, #4b5563);
+    }
+
+    .banner-percent {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .card-img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 10px 12px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+
+    .rank-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .trust-chip {
+      margin-top: 4px;
+      align-self: flex-start;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .trust-low {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .trust-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    /* MODAL */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: min(90vw, 900px);
+      width: 100%;
+      max-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 18px 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+    }
+
+    .modal-image-wrap {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 80vh;
+    }
+
+    .modal-image-wrap img {
+      display: block;
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+    }
+
+    .modal-header-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .modal-title-block h2 {
+      margin: 0 0 2px;
+      font-size: 1.1rem;
+    }
+
+    .modal-title-block .modal-sub {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .modal-badge {
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.25);
+      background: #f3f4f6;
+      color: #374151;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .modal-stat {
+      font-size: 0.88rem;
+      color: var(--text-main);
+    }
+
+    .modal-stat span {
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .modal-list-title {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #4b5563;
+    }
+
+    .modal-list {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .modal-list li {
+      margin-bottom: 4px;
+    }
+
+    .modal-footnote {
+      margin-top: 8px;
+      font-size: 0.76rem;
+      color: #9ca3af;
+    }
+
+    .close-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      color: #6b7280;
+    }
+
+    .close-btn:hover {
+      color: #111827;
+    }
+
+    /* SOURCE + EMBED AREA */
+
+    .source-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 14px;
+    }
+
+    .source-note a {
+      color: var(--accent-blue);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+
+    .share {
+      margin-top: 1.8rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      background: #f9fafb;
+      border-radius: 0 0 20px 20px;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 1.3rem;
+    }
+
+    @media (min-width: 900px) {
+      .share {
+        margin-left: -26px;
+        margin-right: -26px;
+        padding-left: 26px;
+        padding-right: 26px;
+      }
+    }
+
+    .share h3 {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+    }
+
+    .embed-toggle {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #111827;
+    }
+
+    .embed-toggle:hover {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .embed-panel[hidden] {
+      display: none;
+    }
+
+    .embed-panel {
+      margin-top: 8px;
+    }
+
+    .embed-block {
+      margin-top: 10px;
+    }
+
+    .embed-block label {
+      display: block;
+      font-weight: 700;
+      margin: 6px 0 4px;
+      font-size: 0.85rem;
+    }
+
+    .embed-block textarea {
+      width: 100%;
+      height: 120px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      background: #ffffff;
+      color: inherit;
+      font: 12px/1.4 ui-monospace,Consolas,Monaco,monospace;
+      resize: none;
+    }
+
+    .footnote {
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: center;
+      max-width: 800px;
+      margin: 1.1rem auto 0;
+    }
+
+    .footnote a {
+      color: var(--accent-blue);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="page-card">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag"><span></span> Poker Face Survey</div>
+        <h1><span class="hero-title-highlight">Who Looks Like a Liar?</span></h1>
+        <p class="subtitle">
+          3,019 U.S. adults saw these AI-generated faces and picked the one that “looks most like a
+          stereotypical liar.” Tap a face to see the full image and what psychology says about why it
+          might look more (or less) trustworthy.
+        </p>
+        <div class="hero-underline"></div>
+        <div class="pill-row">
+          <div class="pill"><span></span>Sample: 3,019 U.S. adults</div>
+          <div class="pill"><span></span>Fieldwork: Nov 4–7, 2025</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MEN -->
+    <section class="section" id="male-lineup">
+      <div class="section-header">
+        <div class="section-title">Male Lineup</div>
+        <div class="section-kicker">Faces ordered from least trusted (left) to most trusted (right).</div>
+      </div>
+      <p class="section-note">
+        Respondents answered: “Which man looks most like a stereotypical liar?” (1 = most trusted, 5 = least).
+      </p>
+
+      <div class="gallery-grid">
+        <!-- Face 1 male -->
+        <article class="card" onclick="openModal('man3')">
+          <div class="card-banner banner-red">
+            <span>Most liar-looking</span>
+            <span class="banner-percent">32%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/sQ2rWb26/Man3.png" alt="Male face 1" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 1</div>
+              <div class="rank-label">Perceived trust: very low</div>
+            </div>
+            <div class="trust-chip trust-low">Least trusted</div>
+          </div>
+        </article>
+
+        <!-- Face 2 male -->
+        <article class="card" onclick="openModal('man1')">
+          <div class="card-banner banner-red">
+            <span>High suspicion</span>
+            <span class="banner-percent">28%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/HcPC93JN/Man-1.png" alt="Male face 2" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 2</div>
+              <div class="rank-label">Perceived trust: low</div>
+            </div>
+            <div class="trust-chip">Low trust</div>
+          </div>
+        </article>
+
+        <!-- Face 3 male -->
+        <article class="card" onclick="openModal('man4')">
+          <div class="card-banner banner-grey">
+            <span>Middle of pack</span>
+            <span class="banner-percent">18%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/wyBpNnB5/Man4.png" alt="Male face 3" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 3</div>
+              <div class="rank-label">Perceived trust: mixed</div>
+            </div>
+            <div class="trust-chip">Mixed</div>
+          </div>
+        </article>
+
+        <!-- Face 4 male -->
+        <article class="card" onclick="openModal('man')">
+          <div class="card-banner banner-green">
+            <span>Less liar-looking</span>
+            <span class="banner-percent">13%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/JDhLXSnC/Man.png" alt="Male face 4" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 4</div>
+              <div class="rank-label">Perceived trust: high</div>
+            </div>
+            <div class="trust-chip trust-high">More trusted</div>
+          </div>
+        </article>
+
+        <!-- Face 5 male -->
+        <article class="card" onclick="openModal('man2')">
+          <div class="card-banner banner-green">
+            <span>Most trusted</span>
+            <span class="banner-percent">9%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/50bT7d4b/man2.jpg" alt="Male face 5" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 5</div>
+              <div class="rank-label">Perceived trust: very high</div>
+            </div>
+            <div class="trust-chip trust-high">Least liar-looking</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WOMEN -->
+    <section class="section" id="female-lineup">
+      <div class="section-header">
+        <div class="section-title">Female Lineup</div>
+        <div class="section-kicker">Faces ordered from least trusted (left) to most trusted (right).</div>
+      </div>
+      <p class="section-note">
+        Same question, different faces: “Which woman looks most like a stereotypical liar?”
+      </p>
+
+      <div class="gallery-grid">
+        <!-- Face 1 female -->
+        <article class="card" onclick="openModal('woman')">
+          <div class="card-banner banner-red">
+            <span>Most liar-looking</span>
+            <span class="banner-percent">33%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/1nzQFbzK/Woman.png" alt="Female face 1" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 1</div>
+              <div class="rank-label">Perceived trust: very low</div>
+            </div>
+            <div class="trust-chip trust-low">Least trusted</div>
+          </div>
+        </article>
+
+        <!-- Face 2 female -->
+        <article class="card" onclick="openModal('woman4')">
+          <div class="card-banner banner-red">
+            <span>High suspicion</span>
+            <span class="banner-percent">20%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/BLwGBN8R/Woman4.png" alt="Female face 2" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 2</div>
+              <div class="rank-label">Perceived trust: low</div>
+            </div>
+            <div class="trust-chip">Low trust</div>
+          </div>
+        </article>
+
+        <!-- Face 3 female -->
+        <article class="card" onclick="openModal('woman3')">
+          <div class="card-banner banner-grey">
+            <span>Middle of pack</span>
+            <span class="banner-percent">17%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/vgmsnCmr/Woman3.png" alt="Female face 3" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 3</div>
+              <div class="rank-label">Perceived trust: mixed</div>
+            </div>
+            <div class="trust-chip">Mixed</div>
+          </div>
+        </article>
+
+        <!-- Face 4 female -->
+        <article class="card" onclick="openModal('woman5')">
+          <div class="card-banner banner-green">
+            <span>Less liar-looking</span>
+            <span class="banner-percent">15%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/ns2xCnnM/Woman5.png" alt="Female face 4" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 4</div>
+              <div class="rank-label">Perceived trust: high</div>
+            </div>
+            <div class="trust-chip trust-high">More trusted</div>
+          </div>
+        </article>
+
+        <!-- Face 5 female -->
+        <article class="card" onclick="openModal('woman2')">
+          <div class="card-banner banner-green">
+            <span>Most trusted</span>
+            <span class="banner-percent">15%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/34bHF945/Woman2.png" alt="Female face 5" />
+          </div>
+          <div class="card-body">
+            <div class="card-title-row">
+              <div class="card-title">Face 5</div>
+              <div class="rank-label">Perceived trust: very high</div>
+            </div>
+            <div class="trust-chip trust-high">Least liar-looking</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Source line -->
+    <p class="source-note">
+      <strong>Source:</strong>
+      <a href="https://www.actionnetwork.com" target="_blank" rel="noopener">
+        Action Network — Poker Face Survey 2025
+      </a>
+    </p>
+
+    <!-- Share / embed -->
+    <div class="share">
+      <h3>Share / Embed</h3>
+      <button type="button" id="embedToggle" class="embed-toggle"
+              aria-controls="embedPanel" aria-expanded="false">
+        Get Embed Code
+      </button>
+
+      <div id="embedPanel" class="embed-panel" hidden>
+        <small style="color:#6b7280;font-size:0.8rem;">
+          Copy and paste the embed you need below. All values are perception-based survey findings.
+        </small>
+
+        <div class="embed-block">
+          <label for="embed-iframe">Interactive (iframe)</label>
+          <textarea id="embed-iframe" readonly onclick="this.select()"></textarea>
+        </div>
+
+        <div class="embed-block">
+          <label for="embed-static">Static (no JS)</label>
+          <textarea id="embed-static" readonly onclick="this.select()"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footnote">
+    These rankings reflect how trustworthy or “liar-like” each AI-generated face
+    <em>looked</em> to respondents at a glance — not whether any real person is honest
+    or dishonest.
+    Source:
+    <a href="https://www.actionnetwork.com" target="_blank" rel="noopener">
+      Action Network — Poker Face Survey 2025
+    </a>.
+  </p>
+</main>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="faceModalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="faceModalTitle">
+    <div class="modal-image-wrap">
+      <img id="modalImage" src="" alt="" />
+    </div>
+    <div class="modal-content">
+      <div class="modal-header-row">
+        <div class="modal-title-block">
+          <h2 id="faceModalTitle"></h2>
+          <div class="modal-sub" id="modalSubline"></div>
+        </div>
+        <button class="close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-badge" id="modalBadge"></div>
+      <div class="modal-stat" id="modalStat"></div>
+      <div class="modal-stat" id="modalTrust"></div>
+
+      <div class="modal-list-title">Why people might read this face that way</div>
+      <ul class="modal-list" id="modalList"></ul>
+
+      <div class="modal-footnote">
+        Based on perception-only research on face trust cues (e.g. fWHR, typicality and expression:
+        Stirrat &amp; Perrett 2010; Haselhuhn &amp; Wong 2012; Sofer et al. 2015; Oosterhof &amp;
+        Todorov 2008; Leger et al. 2023). These cues don’t prove anyone is honest or dishonest —
+        they just show how fast we form impressions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Canonical published URL for this gallery */
+  const CANONICAL_URL =
+    "https://www.actionnetwork.com/general/poker-face-survey-liar-faces";
+
+  const faceData = {
+    man3: {
+      name: "Face 1 (male)",
+      lineup: "Male line-up",
+      rank: "5 / 5 (least trusted-looking)",
+      percent: 32,
+      label: "Most liar-looking man",
+      img: "https://i.postimg.cc/sQ2rWb26/Man3.png",
+      bullets: [
+        "Broader face and tense brow give a more dominant, confrontational look. Wider-faced men are often judged as less cooperative in lab trust games.",
+        "Tight lips and no smile reduce perceived warmth, which most face-evaluation models treat as the main driver of trust."
+      ]
+    },
+    man1: {
+      name: "Face 2 (male)",
+      lineup: "Male line-up",
+      rank: "4 / 5",
+      percent: 28,
+      label: "High suspicion",
+      img: "https://i.postimg.cc/HcPC93JN/Man-1.png",
+      bullets: [
+        "Fairly typical face shape but with an ambiguous half-smile. When eyes stay neutral and the mouth smiles, people often say the person looks “hard to read.”",
+        "When expression is mixed, perceivers lean more on subtle structure cues (jaw, brow) to decide if they should trust the face."
+      ]
+    },
+    man4: {
+      name: "Face 3 (male)",
+      lineup: "Male line-up",
+      rank: "3 / 5",
+      percent: 18,
+      label: "Middle of the pack",
+      img: "https://i.postimg.cc/wyBpNnB5/Man4.png",
+      bullets: [
+        "Broad, genuine-looking smile boosts perceived warmth, which normally increases trust.",
+        "His face is structurally quite average — and “typical = familiar = trusted” is a consistent finding in face-typicality studies."
+      ]
+    },
+    man: {
+      name: "Face 4 (male)",
+      lineup: "Male line-up",
+      rank: "2 / 5",
+      percent: 13,
+      label: "More trusted",
+      img: "https://i.postimg.cc/JDhLXSnC/Man.png",
+      bullets: [
+        "Strong jaw and intense stare suggest dominance, which some people map to toughness rather than dishonesty.",
+        "Only a minority picked him as the liar, suggesting that a relatively typical face shape offset the harsher expression cues."
+      ]
+    },
+    man2: {
+      name: "Face 5 (male)",
+      lineup: "Male line-up",
+      rank: "1 / 5 (most trusted-looking)",
+      percent: 9,
+      label: "Least liar-looking man",
+      img: "https://i.postimg.cc/50bT7d4b/man2.jpg",
+      bullets: [
+        "Balanced, familiar features plus a calm expression fit the “average face” pattern that tends to be judged more trustworthy.",
+        "The cowboy hat loads in extra stereotype: for some respondents it likely signals straightforward, outdoorsy and honest rather than sneaky."
+      ]
+    },
+    woman: {
+      name: "Face 1 (female)",
+      lineup: "Female line-up",
+      rank: "5 / 5 (least trusted-looking)",
+      percent: 33,
+      label: "Most liar-looking woman",
+      img: "https://i.postimg.cc/1nzQFbzK/Woman.png",
+      bullets: [
+        "Downturned mouth and knitted brows look like negative emotion; faces that seem angry or upset are reliably rated less trustworthy.",
+        "Her expression is more unusual for a portrait, and distinctiveness in shape/expression tends to drag trust ratings down."
+      ]
+    },
+    woman4: {
+      name: "Face 2 (female)",
+      lineup: "Female line-up",
+      rank: "4 / 5",
+      percent: 20,
+      label: "High suspicion",
+      img: "https://i.postimg.cc/BLwGBN8R/Woman4.png",
+      bullets: [
+        "Big, toothy smile with slightly raised inner brows usually boosts trust, but if the smile looks very strong some people see it as “put on.”",
+        "When structure looks typical but expression is intense, raters often split — half reading warmth, half reading performance."
+      ]
+    },
+    woman3: {
+      name: "Face 3 (female)",
+      lineup: "Female line-up",
+      rank: "3 / 5",
+      percent: 17,
+      label: "Middle of the pack",
+      img: "https://i.postimg.cc/vgmsnCmr/Woman3.png",
+      bullets: [
+        "Neutral mouth and relaxed eyes make this a classic “everyday” expression, which tends to sit in the middle of trust scales.",
+        "Moderately typical face shape means there are fewer strong cues either way, so ratings cluster around the centre."
+      ]
+    },
+    woman5: {
+      name: "Face 4 (female)",
+      lineup: "Female line-up",
+      rank: "2 / 5",
+      percent: 15,
+      label: "More trusted",
+      img: "https://i.postimg.cc/ns2xCnnM/Woman5.png",
+      bullets: [
+        "Serious but steady expression — not obviously friendly, but also not exaggerated, which avoids triggering big distrust signals.",
+        "Older faces can sometimes benefit from a general “experience = wisdom” bias, especially when features look stable and symmetrical."
+      ]
+    },
+    woman2: {
+      name: "Face 5 (female)",
+      lineup: "Female line-up",
+      rank: "1 / 5 (most trusted-looking, tie)",
+      percent: 15,
+      label: "Least liar-looking woman",
+      img: "https://i.postimg.cc/34bHF945/Woman2.png",
+      bullets: [
+        "Very typical, symmetrical features plus open eyes and a soft smile match the high-trust profile in many face-evaluation models.",
+        "Glasses and a calm expression often load onto a “competent and approachable” stereotype, which pushes trust ratings up."
+      ]
+    }
+  };
+
+  const backdrop = document.getElementById("faceModalBackdrop");
+  const modalImg = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("faceModalTitle");
+  const modalSub = document.getElementById("modalSubline");
+  const modalBadge = document.getElementById("modalBadge");
+  const modalStat = document.getElementById("modalStat");
+  const modalTrust = document.getElementById("modalTrust");
+  const modalList = document.getElementById("modalList");
+  const closeBtn = document.getElementById("modalCloseBtn");
+
+  function openModal(faceId) {
+    const data = faceData[faceId];
+    if (!data) return;
+
+    modalImg.src = data.img;
+    modalImg.alt = data.name + " full-size face";
+
+    modalTitle.textContent = data.name;
+    modalSub.textContent = data.lineup;
+    modalBadge.textContent = data.label;
+    modalStat.innerHTML =
+      'Picked as the <strong>“liar”</strong> by <span>' +
+      data.percent +
+      "%</span> of respondents in this line-up.";
+    modalTrust.textContent = "Perceived trust rank: " + data.rank;
+
+    modalList.innerHTML = "";
+    data.bullets.forEach((b) => {
+      const li = document.createElement("li");
+      li.textContent = b;
+      modalList.appendChild(li);
+    });
+
+    backdrop.style.display = "flex";
+  }
+
+  function closeModal() {
+    backdrop.style.display = "none";
+    modalImg.src = "";
+  }
+
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  /* ---- EMBED LOGIC ---- */
+
+  const embedToggle = document.getElementById("embedToggle");
+  const embedPanel  = document.getElementById("embedPanel");
+  const taIframe    = document.getElementById("embed-iframe");
+  const taStatic    = document.getElementById("embed-static");
+
+  if (taIframe) {
+    taIframe.value =
+`<!-- BEGIN: Action Network — Poker Face Survey (Interactive Gallery) -->
+<div style="max-width:960px;margin:16px auto;">
+  <iframe src="${CANONICAL_URL}" width="100%" height="700" loading="lazy"
+          style="border:1px solid #E5E7EB;border-radius:12px;background:#ffffff"
+          title="Action Network — Poker Face Survey: Who looks like a liar?"></iframe>
+  <p style="text-align:right;font-size:12px;color:#6b7280;margin-top:6px">
+    Source: <a href="${CANONICAL_URL}" target="_blank" rel="noopener">Action Network — Poker Face Survey 2025</a>.
+  </p>
+</div>
+<!-- END: Interactive Gallery -->`;
+  }
+
+  if (taStatic) {
+    taStatic.value =
+`<!-- BEGIN: Poker Face Survey Gallery (Static, No JS) -->
+<figure style="max-width:960px;margin:16px auto;background:#ffffff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;padding:12px;">
+  <img src="YOUR-POKER-FACE-GALLERY-IMAGE.png"
+       alt="Action Network Poker Face Survey – lineup of AI-generated faces ranked by how 'liar-like' or trustworthy they look."
+       style="width:100%;display:block;border-radius:8px;">
+  <figcaption style="margin-top:6px;font:12px/1.4 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;color:#555;">
+    Action Network’s Poker Face Survey asked 3,019 U.S. adults which AI-generated faces look most like a stereotypical liar (and which look most trustworthy).
+    Source: <a href="${CANONICAL_URL}" target="_blank" rel="noopener" style="color:#2563EB;text-decoration:none;border-bottom:1px dotted currentColor;">Action Network</a>.
+  </figcaption>
+</figure>
+<!-- END: Static Embed -->`;
+  }
+
+  embedToggle.addEventListener("click", () => {
+    const hidden = embedPanel.hasAttribute("hidden");
+    if (hidden) {
+      embedPanel.removeAttribute("hidden");
+      embedToggle.setAttribute("aria-expanded", "true");
+      embedToggle.textContent = "Hide Embed Code";
+    } else {
+      embedPanel.setAttribute("hidden", "");
+      embedToggle.setAttribute("aria-expanded", "false");
+      embedToggle.textContent = "Get Embed Code";
+    }
+  });
+</script>
+</body>
+</html>
