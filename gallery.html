@@ -358,19 +358,14 @@
       border: 1px solid #e5e7eb;
       overflow: hidden;
       margin-bottom: 12px;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-height: 80vh;
+      background: #ffffff;
+      text-align: center; /* center the image */
     }
 
     .modal-image-wrap img {
-      display: block;
+      display: inline-block;
       max-width: 100%;
-      max-height: 80vh;
-      width: auto;
-      height: auto;
+      height: auto;       /* natural pixel size, no forced scaling */
     }
 
     .modal-content {
@@ -603,7 +598,7 @@
             <span class="banner-percent">32%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/sQ2rWb26/Man3.png" alt="Male face 1" />
+            <img src="https://i.postimg.cc/5X7DLqsr/face-1-man.jpg" alt="Male face 1" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -621,7 +616,7 @@
             <span class="banner-percent">28%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/HcPC93JN/Man-1.png" alt="Male face 2" />
+            <img src="https://i.postimg.cc/0z2LzHC1/face-2-man.jpg" alt="Male face 2" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -639,7 +634,7 @@
             <span class="banner-percent">18%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/wyBpNnB5/Man4.png" alt="Male face 3" />
+            <img src="https://i.postimg.cc/YvqJvyxw/face-3-man.jpg" alt="Male face 3" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -657,7 +652,7 @@
             <span class="banner-percent">13%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/JDhLXSnC/Man.png" alt="Male face 4" />
+            <img src="https://i.postimg.cc/fVT6Vgvn/face-4-man.jpg" alt="Male face 4" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -675,7 +670,7 @@
             <span class="banner-percent">9%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/50bT7d4b/man2.jpg" alt="Male face 5" />
+            <img src="https://i.postimg.cc/BjQdjwBd/face-5-man.jpg" alt="Male face 5" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -706,7 +701,7 @@
             <span class="banner-percent">33%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/1nzQFbzK/Woman.png" alt="Female face 1" />
+            <img src="https://i.postimg.cc/sMDtM04N/face-1-woman.jpg" alt="Female face 1" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -724,7 +719,7 @@
             <span class="banner-percent">20%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/BLwGBN8R/Woman4.png" alt="Female face 2" />
+            <img src="https://i.postimg.cc/FYs2YnVq/face-2-woman.jpg" alt="Female face 2" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -742,7 +737,7 @@
             <span class="banner-percent">17%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/vgmsnCmr/Woman3.png" alt="Female face 3" />
+            <img src="https://i.postimg.cc/WdbQdfwW/face-3-woman.jpg" alt="Female face 3" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -760,7 +755,7 @@
             <span class="banner-percent">15%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/ns2xCnnM/Woman5.png" alt="Female face 4" />
+            <img src="https://i.postimg.cc/v4Hp4StS/face-4-woman.jpg" alt="Female face 4" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -778,7 +773,7 @@
             <span class="banner-percent">15%</span>
           </div>
           <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/34bHF945/Woman2.png" alt="Female face 5" />
+            <img src="https://i.postimg.cc/Js49sd5Q/face-5-woman.jpg" alt="Female face 5" />
           </div>
           <div class="card-body">
             <div class="card-title-row">
@@ -840,6 +835,7 @@
 <div class="modal-backdrop" id="faceModalBackdrop">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="faceModalTitle">
     <div class="modal-image-wrap">
+      <!-- modal uses ORIGINAL image URLs; no thumbnails -->
       <img id="modalImage" src="" alt="" />
     </div>
     <div class="modal-content">
@@ -868,9 +864,8 @@
 </div>
 
 <script>
-  /* Canonical published URL for this gallery */
-  const CANONICAL_URL =
-    "https://www.actionnetwork.com/general/poker-face-survey-liar-faces";
+  /* Canonical URL for this gallery */
+  const CANONICAL_URL = "https://www.actionnetwork.com";
 
   const faceData = {
     man3: {
@@ -879,7 +874,7 @@
       rank: "5 / 5 (least trusted-looking)",
       percent: 32,
       label: "Most liar-looking man",
-      img: "https://i.postimg.cc/sQ2rWb26/Man3.png",
+      img: "https://i.postimg.cc/5X7DLqsr/face-1-man.jpg",
       bullets: [
         "Broader face and tense brow give a more dominant, confrontational look. Wider-faced men are often judged as less cooperative in lab trust games.",
         "Tight lips and no smile reduce perceived warmth, which most face-evaluation models treat as the main driver of trust."
@@ -891,7 +886,7 @@
       rank: "4 / 5",
       percent: 28,
       label: "High suspicion",
-      img: "https://i.postimg.cc/HcPC93JN/Man-1.png",
+      img: "https://i.postimg.cc/0z2LzHC1/face-2-man.jpg",
       bullets: [
         "Fairly typical face shape but with an ambiguous half-smile. When eyes stay neutral and the mouth smiles, people often say the person looks “hard to read.”",
         "When expression is mixed, perceivers lean more on subtle structure cues (jaw, brow) to decide if they should trust the face."
@@ -903,7 +898,7 @@
       rank: "3 / 5",
       percent: 18,
       label: "Middle of the pack",
-      img: "https://i.postimg.cc/wyBpNnB5/Man4.png",
+      img: "https://i.postimg.cc/YvqJvyxw/face-3-man.jpg",
       bullets: [
         "Broad, genuine-looking smile boosts perceived warmth, which normally increases trust.",
         "His face is structurally quite average — and “typical = familiar = trusted” is a consistent finding in face-typicality studies."
@@ -915,7 +910,7 @@
       rank: "2 / 5",
       percent: 13,
       label: "More trusted",
-      img: "https://i.postimg.cc/JDhLXSnC/Man.png",
+      img: "https://i.postimg.cc/fVT6Vgvn/face-4-man.jpg",
       bullets: [
         "Strong jaw and intense stare suggest dominance, which some people map to toughness rather than dishonesty.",
         "Only a minority picked him as the liar, suggesting that a relatively typical face shape offset the harsher expression cues."
@@ -927,7 +922,7 @@
       rank: "1 / 5 (most trusted-looking)",
       percent: 9,
       label: "Least liar-looking man",
-      img: "https://i.postimg.cc/50bT7d4b/man2.jpg",
+      img: "https://i.postimg.cc/BjQdjwBd/face-5-man.jpg",
       bullets: [
         "Balanced, familiar features plus a calm expression fit the “average face” pattern that tends to be judged more trustworthy.",
         "The cowboy hat loads in extra stereotype: for some respondents it likely signals straightforward, outdoorsy and honest rather than sneaky."
@@ -939,7 +934,7 @@
       rank: "5 / 5 (least trusted-looking)",
       percent: 33,
       label: "Most liar-looking woman",
-      img: "https://i.postimg.cc/1nzQFbzK/Woman.png",
+      img: "https://i.postimg.cc/sMDtM04N/face-1-woman.jpg",
       bullets: [
         "Downturned mouth and knitted brows look like negative emotion; faces that seem angry or upset are reliably rated less trustworthy.",
         "Her expression is more unusual for a portrait, and distinctiveness in shape/expression tends to drag trust ratings down."
@@ -951,7 +946,7 @@
       rank: "4 / 5",
       percent: 20,
       label: "High suspicion",
-      img: "https://i.postimg.cc/BLwGBN8R/Woman4.png",
+      img: "https://i.postimg.cc/FYs2YnVq/face-2-woman.jpg",
       bullets: [
         "Big, toothy smile with slightly raised inner brows usually boosts trust, but if the smile looks very strong some people see it as “put on.”",
         "When structure looks typical but expression is intense, raters often split — half reading warmth, half reading performance."
@@ -963,7 +958,7 @@
       rank: "3 / 5",
       percent: 17,
       label: "Middle of the pack",
-      img: "https://i.postimg.cc/vgmsnCmr/Woman3.png",
+      img: "https://i.postimg.cc/WdbQdfwW/face-3-woman.jpg",
       bullets: [
         "Neutral mouth and relaxed eyes make this a classic “everyday” expression, which tends to sit in the middle of trust scales.",
         "Moderately typical face shape means there are fewer strong cues either way, so ratings cluster around the centre."
@@ -975,7 +970,7 @@
       rank: "2 / 5",
       percent: 15,
       label: "More trusted",
-      img: "https://i.postimg.cc/ns2xCnnM/Woman5.png",
+      img: "https://i.postimg.cc/v4Hp4StS/face-4-woman.jpg",
       bullets: [
         "Serious but steady expression — not obviously friendly, but also not exaggerated, which avoids triggering big distrust signals.",
         "Older faces can sometimes benefit from a general “experience = wisdom” bias, especially when features look stable and symmetrical."
@@ -987,7 +982,7 @@
       rank: "1 / 5 (most trusted-looking, tie)",
       percent: 15,
       label: "Least liar-looking woman",
-      img: "https://i.postimg.cc/34bHF945/Woman2.png",
+      img: "https://i.postimg.cc/Js49sd5Q/face-5-woman.jpg",
       bullets: [
         "Very typical, symmetrical features plus open eyes and a soft smile match the high-trust profile in many face-evaluation models.",
         "Glasses and a calm expression often load onto a “competent and approachable” stereotype, which pushes trust ratings up."
@@ -1009,7 +1004,7 @@
     const data = faceData[faceId];
     if (!data) return;
 
-    modalImg.src = data.img;
+    modalImg.src = data.img; /* ORIGINAL URL */
     modalImg.alt = data.name + " full-size face";
 
     modalTitle.textContent = data.name;
@@ -1097,3 +1092,4 @@
 </script>
 </body>
 </html>
+
