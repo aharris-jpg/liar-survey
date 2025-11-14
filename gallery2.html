@@ -49,36 +49,15 @@
       padding: 24px 20px 24px;
     }
 
-    @media (min-width: 900px) {
-      body { padding: 48px 24px 70px; }
-      .page-card { padding: 28px 26px 26px; }
-    }
-
     /* HERO */
-
     .hero {
       border-radius: 20px;
-      padding: 18px 18px 18px;
+      padding: 18px;
       border: 1px solid rgba(148, 163, 184, 0.25);
       background: linear-gradient(135deg, #ffffff, #e5f0ff);
+      margin-bottom: 22px;
       position: relative;
       overflow: hidden;
-      margin-bottom: 22px;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left,
-        rgba(37, 99, 235, 0.18),
-        transparent 55%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
     }
 
     .hero-tag {
@@ -117,47 +96,15 @@
       color: transparent;
     }
 
-    .hero-meta {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .pill {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-blue);
-      background: rgba(37, 99, 235, 0.06);
-      border-radius: 999px;
-      padding: 4px 11px;
-      border: 1px solid rgba(37, 99, 235, 0.2);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    .pill span {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent-blue);
-    }
-
-    /* SECTIONS / GRID */
-
+    /* GRID + CARDS */
     .section {
       margin-top: 26px;
     }
 
     .section-header {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 8px;
-      align-items: baseline;
+      flex-wrap: wrap;
       margin-bottom: 8px;
     }
 
@@ -175,20 +122,15 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
     @media (min-width: 640px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
-
     @media (min-width: 900px) {
-      .gallery-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-      }
+      .gallery-grid { grid-template-columns: repeat(5, 1fr); }
     }
 
     .card {
@@ -210,20 +152,11 @@
       color: #ffffff;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
 
-    .banner-red {
-      background: linear-gradient(90deg, #fb7185, #e11d48);
-    }
-
-    .banner-green {
-      background: linear-gradient(90deg, #22c55e, #16a34a);
-    }
-
-    .banner-grey {
-      background: linear-gradient(90deg, #9ca3af, #4b5563);
-    }
+    .banner-red { background: linear-gradient(90deg, #fb7185, #e11d48); }
+    .banner-grey { background: linear-gradient(90deg, #9ca3af, #4b5563); }
+    .banner-green { background: linear-gradient(90deg, #22c55e, #16a34a); }
 
     .banner-percent {
       font-size: 0.85rem;
@@ -231,24 +164,18 @@
     }
 
     .card-img-wrap {
-      position: relative;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 4/3;
       overflow: hidden;
-      background: #000;
     }
 
     .card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     .card-body {
-      padding: 8px 10px 9px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+      padding: 8px 10px;
     }
 
     .card-title {
@@ -258,55 +185,86 @@
 
     .card-sub {
       font-size: 0.78rem;
-      text-transform: uppercase;
       letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--text-muted);
     }
 
     .card-meta {
       font-size: 0.8rem;
       color: var(--text-muted);
-      margin-top: 1px;
     }
 
-    .card-meta span {
-      font-weight: 600;
-    }
+    .card-meta--low span { color: var(--accent-red); font-weight: 600; }
+    .card-meta--high span { color: var(--accent-green); font-weight: 600; }
 
-    .card-meta--low span {
-      color: var(--accent-red);
-    }
-
-    .card-meta--high span {
-      color: var(--accent-green);
-    }
-
+    /* SOURCE NOTE */
     .source-note {
       font-size: 0.78rem;
       color: #6b7280;
-      margin-top: 16px;
+      margin-top: 20px;
       text-align: center;
+      line-height: 1.5;
     }
 
     .source-note a {
       color: var(--accent-blue);
-      text-decoration: none;
       font-weight: 600;
+      text-decoration: none;
       border-bottom: 1px dotted currentColor;
+    }
+
+    /* EMBED SECTION */
+    .embed-box {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      text-align: center;
+    }
+
+    .embed-toggle {
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .embed-toggle:hover {
+      background: #f3f4f6;
+    }
+
+    .embed-panel {
+      margin-top: 12px;
+      display: none;
+      text-align: left;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-family: ui-monospace, monospace;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      padding: 8px;
+      resize: none;
     }
   </style>
 </head>
+
 <body>
 <main>
   <section class="page-card">
-    <header class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag"><span></span> Poker Face Survey</div>
-    <h1><span class="hero-title-highlight">Who Looks Like a Liar?</span></h1>
-  </div>
-</header>
 
-    <!-- MEN -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag"><span></span> Poker Face Survey</div>
+        <h1><span class="hero-title-highlight">Who Looks Like a Liar?</span></h1>
+      </div>
+    </header>
+
+    <!-- MALE LINEUP -->
     <section class="section">
       <div class="section-header">
         <div class="section-title">Male lineup</div>
@@ -314,89 +272,40 @@
       </div>
 
       <div class="gallery-grid">
-        <!-- Face 1 male -->
+        <!-- Male cards -->
         <article class="card">
-          <div class="card-banner banner-red">
-            <span>Most liar-looking</span>
-            <span class="banner-percent">32%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/5X7DLqsr/face-1-man.jpg" alt="Male face 1" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 1</div>
-            <div class="card-sub">Rank 5 of 5</div>
-            <div class="card-meta card-meta--low"><span>Trust: very low</span></div>
-          </div>
+          <div class="card-banner banner-red"><span>Most liar-looking</span><span class="banner-percent">32%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/5X7DLqsr/face-1-man.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 1</div><div class="card-sub">Rank 5 of 5</div><div class="card-meta card-meta--low"><span>Trust: very low</span></div></div>
         </article>
 
-        <!-- Face 2 male -->
         <article class="card">
-          <div class="card-banner banner-red">
-            <span>High suspicion</span>
-            <span class="banner-percent">28%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/0z2LzHC1/face-2-man.jpg" alt="Male face 2" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 2</div>
-            <div class="card-sub">Rank 4 of 5</div>
-            <div class="card-meta card-meta--low"><span>Trust: low</span></div>
-          </div>
+          <div class="card-banner banner-red"><span>High suspicion</span><span class="banner-percent">28%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/0z2LzHC1/face-2-man.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 2</div><div class="card-sub">Rank 4 of 5</div><div class="card-meta card-meta--low"><span>Trust: low</span></div></div>
         </article>
 
-        <!-- Face 3 male -->
         <article class="card">
-          <div class="card-banner banner-grey">
-            <span>Middle of pack</span>
-            <span class="banner-percent">18%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/YvqJvyxw/face-3-man.jpg" alt="Male face 3" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 3</div>
-            <div class="card-sub">Rank 3 of 5</div>
-            <div class="card-meta"><span>Trust: mixed</span></div>
-          </div>
+          <div class="card-banner banner-grey"><span>Middle of pack</span><span class="banner-percent">18%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/YvqJvyxw/face-3-man.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 3</div><div class="card-sub">Rank 3 of 5</div><div class="card-meta"><span>Trust: mixed</span></div></div>
         </article>
 
-        <!-- Face 4 male -->
         <article class="card">
-          <div class="card-banner banner-green">
-            <span>Less liar-looking</span>
-            <span class="banner-percent">13%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/fVT6Vgvn/face-4-man.jpg" alt="Male face 4" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 4</div>
-            <div class="card-sub">Rank 2 of 5</div>
-            <div class="card-meta card-meta--high"><span>Trust: high</span></div>
-          </div>
+          <div class="card-banner banner-green"><span>Less liar-looking</span><span class="banner-percent">13%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/fVT6Vgvn/face-4-man.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 4</div><div class="card-sub">Rank 2 of 5</div><div class="card-meta card-meta--high"><span>Trust: high</span></div></div>
         </article>
 
-        <!-- Face 5 male -->
         <article class="card">
-          <div class="card-banner banner-green">
-            <span>Most trusted</span>
-            <span class="banner-percent">9%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/BjQdjwBd/face-5-man.jpg" alt="Male face 5" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 5</div>
-            <div class="card-sub">Rank 1 of 5</div>
-            <div class="card-meta card-meta--high"><span>Trust: very high</span></div>
-          </div>
+          <div class="card-banner banner-green"><span>Most trusted</span><span class="banner-percent">9%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/BjQdjwBd/face-5-man.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 5</div><div class="card-sub">Rank 1 of 5</div><div class="card-meta card-meta--high"><span>Trust: very high</span></div></div>
         </article>
       </div>
     </section>
 
-    <!-- WOMEN -->
+    <!-- FEMALE LINEUP -->
     <section class="section">
       <div class="section-header">
         <div class="section-title">Female lineup</div>
@@ -404,100 +313,85 @@
       </div>
 
       <div class="gallery-grid">
-        <!-- Face 1 female -->
+        <!-- Female cards -->
         <article class="card">
-          <div class="card-banner banner-red">
-            <span>Most liar-looking</span>
-            <span class="banner-percent">33%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/sMDtM04N/face-1-woman.jpg" alt="Female face 1" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 1</div>
-            <div class="card-sub">Rank 5 of 5</div>
-            <div class="card-meta card-meta--low"><span>Trust: very low</span></div>
-          </div>
+          <div class="card-banner banner-red"><span>Most liar-looking</span><span class="banner-percent">33%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/sMDtM04N/face-1-woman.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 1</div><div class="card-sub">Rank 5 of 5</div><div class="card-meta card-meta--low"><span>Trust: very low</span></div></div>
         </article>
 
-        <!-- Face 2 female -->
         <article class="card">
-          <div class="card-banner banner-red">
-            <span>High suspicion</span>
-            <span class="banner-percent">20%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/FYs2YnVq/face-2-woman.jpg" alt="Female face 2" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 2</div>
-            <div class="card-sub">Rank 4 of 5</div>
-            <div class="card-meta card-meta--low"><span>Trust: low</span></div>
-          </div>
+          <div class="card-banner banner-red"><span>High suspicion</span><span class="banner-percent">20%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/FYs2YnVq/face-2-woman.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 2</div><div class="card-sub">Rank 4 of 5</div><div class="card-meta card-meta--low"><span>Trust: low</span></div></div>
         </article>
 
-        <!-- Face 3 female -->
         <article class="card">
-          <div class="card-banner banner-grey">
-            <span>Middle of pack</span>
-            <span class="banner-percent">17%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/WdbQdfwW/face-3-woman.jpg" alt="Female face 3" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 3</div>
-            <div class="card-sub">Rank 3 of 5</div>
-            <div class="card-meta"><span>Trust: mixed</span></div>
-          </div>
+          <div class="card-banner banner-grey"><span>Middle of pack</span><span class="banner-percent">17%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/WdbQdfwW/face-3-woman.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 3</div><div class="card-sub">Rank 3 of 5</div><div class="card-meta"><span>Trust: mixed</span></div></div>
         </article>
 
-        <!-- Face 4 female -->
         <article class="card">
-          <div class="card-banner banner-green">
-            <span>Less liar-looking</span>
-            <span class="banner-percent">15%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/v4Hp4StS/face-4-woman.jpg" alt="Female face 4" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 4</div>
-            <div class="card-sub">Rank 2 of 5</div>
-            <div class="card-meta card-meta--high"><span>Trust: high</span></div>
-          </div>
+          <div class="card-banner banner-green"><span>Less liar-looking</span><span class="banner-percent">15%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/v4Hp4StS/face-4-woman.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 4</div><div class="card-sub">Rank 2 of 5</div><div class="card-meta card-meta--high"><span>Trust: high</span></div></div>
         </article>
 
-        <!-- Face 5 female -->
         <article class="card">
-          <div class="card-banner banner-green">
-            <span>Most trusted</span>
-            <span class="banner-percent">15%</span>
-          </div>
-          <div class="card-img-wrap">
-            <img src="https://i.postimg.cc/Js49sd5Q/face-5-woman.jpg" alt="Female face 5" />
-          </div>
-          <div class="card-body">
-            <div class="card-title">Face 5</div>
-            <div class="card-sub">Rank 1 of 5</div>
-            <div class="card-meta card-meta--high"><span>Trust: very high</span></div>
-          </div>
+          <div class="card-banner banner-green"><span>Most trusted</span><span class="banner-percent">15%</span></div>
+          <div class="card-img-wrap"><img src="https://i.postimg.cc/Js49sd5Q/face-5-woman.jpg" /></div>
+          <div class="card-body"><div class="card-title">Face 5</div><div class="card-sub">Rank 1 of 5</div><div class="card-meta card-meta--high"><span>Trust: very high</span></div></div>
         </article>
       </div>
     </section>
 
+    <!-- SOURCE -->
     <p class="source-note">
-  This gallery shows the results of Action Network’s “Poker Face” perception survey.  
-  Respondents were shown sets of AI-generated faces and asked:  
-  <em>“Which person looks most like a stereotypical liar?”</em>  
-  Percentages indicate how often each face was chosen within its lineup.<br><br>
+      This gallery shows the results of Action Network’s “Poker Face” perception survey.<br>
+      Respondents were shown AI-generated faces and asked:<br>
+      <em>“Which person looks most like a stereotypical liar?”</em><br>
+      Percentages reflect how often each face was chosen within its lineup.<br><br>
+      Sample: 3,019 U.S. adults • Fieldwork: November 4–7, 2025 • Online panel<br>
+      Source: 
+      <a href="https://www.actionnetwork.com" target="_blank" rel="noopener">
+        Action Network — Poker Face Survey 2025
+      </a>
+    </p>
 
-  Sample: 3,019 U.S. adults • Fieldwork: November 4–7, 2025 • Online panel<br>
-  Source: <a href="https://www.actionnetwork.com" target="_blank" rel="noopener">
-  Action Network — Poker Face Survey 2025</a>
-</p>
+    <!-- EMBED SECTION ADDED -->
+    <div class="embed-box">
+      <button class="embed-toggle" onclick="toggleEmbed()">Get Embed Code</button>
+
+      <div class="embed-panel" id="embedPanel">
+
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:6px;">
+          Copy and paste the embed code below:
+        </p>
+
+        <textarea readonly onclick="this.select()">
+<iframe 
+  src="https://aharris-jpg.github.io/liar-survey/gallery2.html"
+  width="100%" 
+  height="1200" 
+  style="border:1px solid #E5E7EB;border-radius:12px;background:#ffffff;"
+  loading="lazy"
+  title="Action Network — Poker Face Survey: Liar-Looking Gallery">
+</iframe>
+        </textarea>
+
+      </div>
+    </div>
 
   </section>
 </main>
+
+<script>
+function toggleEmbed() {
+  const panel = document.getElementById("embedPanel");
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+</script>
+
 </body>
 </html>
