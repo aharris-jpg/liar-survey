@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Poker Face Survey – Who Looks Like a Liar?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --page-bg-top: #e5f0ff;
+      --page-bg-bottom: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --accent-blue: #2563eb;
+      --accent-red: #e11d48;
+      --accent-green: #16a34a;
+      --border-subtle: #e5e7eb;
+      --radius-xl: 18px;
+      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 16px 60px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: linear-gradient(
+        180deg,
+        var(--page-bg-top) 0%,
+        var(--page-bg-bottom) 40%,
+        var(--page-bg-bottom) 100%
+      );
+      color: var(--text-main);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .page-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 24px 20px 24px;
+    }
+
+    @media (min-width: 900px) {
+      body { padding: 48px 24px 70px; }
+      .page-card { padding: 28px 26px 26px; }
+    }
+
+    /* HERO */
+
+    .hero {
+      border-radius: 20px;
+      padding: 18px 18px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: linear-gradient(135deg, #ffffff, #e5f0ff);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left,
+        rgba(37, 99, 235, 0.18),
+        transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: #111827;
+      color: #f9fafb;
+      margin-bottom: 6px;
+    }
+
+    .hero-tag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+    }
+
+    .hero-title-highlight {
+      background: linear-gradient(90deg, #111827, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      background: rgba(37, 99, 235, 0.06);
+      border-radius: 999px;
+      padding: 4px 11px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-blue);
+    }
+
+    /* SECTIONS / GRID */
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-banner {
+      padding: 5px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .banner-red {
+      background: linear-gradient(90deg, #fb7185, #e11d48);
+    }
+
+    .banner-green {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+
+    .banner-grey {
+      background: linear-gradient(90deg, #9ca3af, #4b5563);
+    }
+
+    .banner-percent {
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .card-img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 8px 10px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .card-sub {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .card-meta span {
+      font-weight: 600;
+    }
+
+    .card-meta--low span {
+      color: var(--accent-red);
+    }
+
+    .card-meta--high span {
+      color: var(--accent-green);
+    }
+
+    .source-note {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .source-note a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dotted currentColor;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="page-card">
+    <header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span></span> Poker Face Survey</div>
+    <h1><span class="hero-title-highlight">Who Looks Like a Liar?</span></h1>
+  </div>
+</header>
+
+    <!-- MEN -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Male lineup</div>
+        <div class="section-kicker">Left = most “liar-looking”, right = most trusted.</div>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Face 1 male -->
+        <article class="card">
+          <div class="card-banner banner-red">
+            <span>Most liar-looking</span>
+            <span class="banner-percent">32%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/5X7DLqsr/face-1-man.jpg" alt="Male face 1" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 1</div>
+            <div class="card-sub">Rank 5 of 5</div>
+            <div class="card-meta card-meta--low"><span>Trust: very low</span></div>
+          </div>
+        </article>
+
+        <!-- Face 2 male -->
+        <article class="card">
+          <div class="card-banner banner-red">
+            <span>High suspicion</span>
+            <span class="banner-percent">28%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/0z2LzHC1/face-2-man.jpg" alt="Male face 2" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 2</div>
+            <div class="card-sub">Rank 4 of 5</div>
+            <div class="card-meta card-meta--low"><span>Trust: low</span></div>
+          </div>
+        </article>
+
+        <!-- Face 3 male -->
+        <article class="card">
+          <div class="card-banner banner-grey">
+            <span>Middle of pack</span>
+            <span class="banner-percent">18%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/YvqJvyxw/face-3-man.jpg" alt="Male face 3" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 3</div>
+            <div class="card-sub">Rank 3 of 5</div>
+            <div class="card-meta"><span>Trust: mixed</span></div>
+          </div>
+        </article>
+
+        <!-- Face 4 male -->
+        <article class="card">
+          <div class="card-banner banner-green">
+            <span>Less liar-looking</span>
+            <span class="banner-percent">13%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/fVT6Vgvn/face-4-man.jpg" alt="Male face 4" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 4</div>
+            <div class="card-sub">Rank 2 of 5</div>
+            <div class="card-meta card-meta--high"><span>Trust: high</span></div>
+          </div>
+        </article>
+
+        <!-- Face 5 male -->
+        <article class="card">
+          <div class="card-banner banner-green">
+            <span>Most trusted</span>
+            <span class="banner-percent">9%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/BjQdjwBd/face-5-man.jpg" alt="Male face 5" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 5</div>
+            <div class="card-sub">Rank 1 of 5</div>
+            <div class="card-meta card-meta--high"><span>Trust: very high</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WOMEN -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">Female lineup</div>
+        <div class="section-kicker">Same question, different faces.</div>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Face 1 female -->
+        <article class="card">
+          <div class="card-banner banner-red">
+            <span>Most liar-looking</span>
+            <span class="banner-percent">33%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/sMDtM04N/face-1-woman.jpg" alt="Female face 1" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 1</div>
+            <div class="card-sub">Rank 5 of 5</div>
+            <div class="card-meta card-meta--low"><span>Trust: very low</span></div>
+          </div>
+        </article>
+
+        <!-- Face 2 female -->
+        <article class="card">
+          <div class="card-banner banner-red">
+            <span>High suspicion</span>
+            <span class="banner-percent">20%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/FYs2YnVq/face-2-woman.jpg" alt="Female face 2" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 2</div>
+            <div class="card-sub">Rank 4 of 5</div>
+            <div class="card-meta card-meta--low"><span>Trust: low</span></div>
+          </div>
+        </article>
+
+        <!-- Face 3 female -->
+        <article class="card">
+          <div class="card-banner banner-grey">
+            <span>Middle of pack</span>
+            <span class="banner-percent">17%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/WdbQdfwW/face-3-woman.jpg" alt="Female face 3" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 3</div>
+            <div class="card-sub">Rank 3 of 5</div>
+            <div class="card-meta"><span>Trust: mixed</span></div>
+          </div>
+        </article>
+
+        <!-- Face 4 female -->
+        <article class="card">
+          <div class="card-banner banner-green">
+            <span>Less liar-looking</span>
+            <span class="banner-percent">15%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/v4Hp4StS/face-4-woman.jpg" alt="Female face 4" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 4</div>
+            <div class="card-sub">Rank 2 of 5</div>
+            <div class="card-meta card-meta--high"><span>Trust: high</span></div>
+          </div>
+        </article>
+
+        <!-- Face 5 female -->
+        <article class="card">
+          <div class="card-banner banner-green">
+            <span>Most trusted</span>
+            <span class="banner-percent">15%</span>
+          </div>
+          <div class="card-img-wrap">
+            <img src="https://i.postimg.cc/Js49sd5Q/face-5-woman.jpg" alt="Female face 5" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Face 5</div>
+            <div class="card-sub">Rank 1 of 5</div>
+            <div class="card-meta card-meta--high"><span>Trust: very high</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <p class="source-note">
+  This gallery shows the results of Action Network’s “Poker Face” perception survey.  
+  Respondents were shown sets of AI-generated faces and asked:  
+  <em>“Which person looks most like a stereotypical liar?”</em>  
+  Percentages indicate how often each face was chosen within its lineup.<br><br>
+
+  Sample: 3,019 U.S. adults • Fieldwork: November 4–7, 2025 • Online panel<br>
+  Source: <a href="https://www.actionnetwork.com" target="_blank" rel="noopener">
+  Action Network — Poker Face Survey 2025</a>
+</p>
+
+  </section>
+</main>
+</body>
+</html>
